@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
-
 import styled from "styled-components"
+import NavItem from "./NavItem"
+
+import { URLs } from "../../utils/appURLs";
 
 const SectionNav = styled.section`
   width: 20vw;
@@ -8,29 +9,27 @@ const SectionNav = styled.section`
   padding: 2em;
   background-color: var(--rich-black-fogra);
 `
-const NavItem = styled.li`
-  margin: 1em 0;
-  & > a {
-    position: relative;
-    font: 400 1.5em var(--primary-font);
-    color: var(--white);
-    transition: 300ms;
-    &:hover {
-      color: var(--blue-jeans);
-    }
-  }
+const Title = styled.h2`
+  font: bold 2em var(--primary-font);
+  color: var(--white);
+  line-height: 120%;
+  margin-bottom: 1em;
 `
 export default function NavBar() {
+  
   return(
     <SectionNav>
+      <Title>Home Finance</Title>
       <nav>
         <ul>
-          <NavItem className="nav-primary">
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </NavItem>
-          <NavItem className="nav-primary">
-            <NavLink to="/about">Sobre</NavLink>
-          </NavItem>
+          {URLs.map((url, index) => {
+            return(
+              <NavItem link={url.link} key={index}>
+                {url.name}
+              </NavItem>
+              )
+            })
+          }
         </ul>
       </nav>
     </SectionNav>
